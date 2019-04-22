@@ -180,7 +180,7 @@ vector<point> GrahamScan(vector<point>& points)
 /*
 	Implementation of Chan's Algorithm to compute Convex Hull
 */
-vector<point> chansalgorithm(vector<point> v)
+vector<point> chans(vector<point> v)
 {
 	for(int t=0; t< v.size(); ++t)
 	{
@@ -237,7 +237,7 @@ int main()
 	vector<point> v;
 	for (int i=0;i< number; i++)
 	v.push_back(points[i]);
-	vector<point> output = chansalgorithm(v);
+	vector<point> output = chans(v);
 	cout<<"\n***************** CONVEX HULL **********************\n";
 	for(int i=0; i< output.size(); ++i)
 		cout<<output[i]<<" ";

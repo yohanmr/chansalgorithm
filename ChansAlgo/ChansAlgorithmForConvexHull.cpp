@@ -1,8 +1,8 @@
 #include "point.h"
+#include "GrahamScan.h"
 using namespace std;
 
-Point p0;
-
+GrahamScan GS;
 double distsquare(Point p1, Point p2)
 {
 	return (p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y);
@@ -18,18 +18,6 @@ int orientation(Point p, Point q, Point r)
 	return (orient > 0)? -1: 1; // CW: -1 or CCW: 1
 }
 
-/*
-	Function used while sorting the Points using qsort() inbuilt function in C
-*/
-int compare(const void *vp1, const void *vp2)
-{
-	Point *p1 = (Point *)vp1;
-	Point *p2 = (Point *)vp2;
-	int orient = orientation(p0, *p1, *p2);
-	if (orient == 0)
-		return (distsquare(p0, *p2) >= distsquare(p0, *p1))? -1 : 1;
-	return (orient == 1)? -1: 1;
-}
 
 /*
 	Returns the index of the Point to which the tangent is drawn from Point p.
@@ -121,26 +109,7 @@ vector<Point> left(vector<Point>& v,Point p)
 	return v;
 }
 
-/*
-	Graham Scan algorithm to find convex hull from the given set of Points
-	Returns the Hull Points from a vector of Points
-*/
-vector<Point> GrahamScan(vector<Point>& Points)
-{
-	if(Points.size()<=1)
-		return Points;
-	qsort(&Points[0], Points.size(), sizeof(Point), compare);
-	vector<Point> lower_hull;
-	for(int i=0; i<Points.size(); ++i)
-		lower_hull = left(lower_hull,Points[i]);
-	reverse(Points.begin(),Points.end());
-	vector<Point> upper_hull;
-	for(int i=0; i<Points.size(); ++i)
-		upper_hull = left(upper_hull,Points[i]);
-	for(int i=1;i<upper_hull.size();++i)
-		lower_hull.push_back(upper_hull[i]);
-	return lower_hull;
-}
+
 
 /*
 	Implementation of Chan's Algorithm to compute Convex Hull
@@ -159,7 +128,7 @@ vector<Point> chans(vector<Point> v)
 					chunk.assign(v.begin()+i,v.begin()+i+m);
 				else
 					chunk.assign(v.begin()+i,v.end());
-				hulls.push_back(GrahamScan(chunk));
+				hulls.push_back(GS.runGrahamScan(chunk));
 			}
 			cout<<"\nM (Chunk Size): "<<m<<"\n";
 			for(int i=0;i<hulls.size();++i)

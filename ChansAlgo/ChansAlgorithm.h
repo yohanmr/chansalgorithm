@@ -8,16 +8,20 @@
 using namespace std;
 
 GrahamScan GS;
+/**
+  * Main class to find the convex hull of chunks using Chans Algorithm
+  */
 class ChansAlgo
 {
 private:
+	///returns square of distance
 	double distsquare(Point p1, Point p2)
 	{
 		return (p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y);
 	}
 
-	/*
-		Returns orientation of the line joining Points p and q and line joining Points q and r
+	/**
+		*Returns orientation of the line joining Points p and q and line joining Points q and r
 	*/
 	int orientation(Point p, Point q, Point r)
 	{
@@ -27,8 +31,8 @@ private:
 	}
 
 
-	/*
-		Returns the index of the Point to which the tangent is drawn from Point p.
+	/**
+		*Returns the index of the Point to which the tangent is drawn from Point p.
 
 	*/
 	int findtangent(vector<Point> v,Point p)
@@ -57,8 +61,8 @@ private:
 		return lend;
 	}
 
-	/*
-		Returns the pair of integers representing the Hull # and the Point in that Hull which is the extreme amongst all given Hull Points
+	/**
+		*Returns the pair of integers representing the Hull # and the Point in that Hull which is the extreme amongst all given Hull Points
 	*/
 	pair<double,double> extremept(vector<vector<Point> >& hulls)
 	{
@@ -83,8 +87,8 @@ private:
 		return make_pair(h,p);
 	}
 
-	/*
-		Returns the pair of integers representing the Hull # and the Point in that Hull to which the Point lPoint will be joined
+	/**
+		*Returns the pair of integers representing the Hull # and the Point in that Hull to which the Point lPoint will be joined
 	*/
 	pair<double,double> next_hullpt(vector<vector<Point> >& hulls, pair<int,int> lPoint)
 	{
@@ -104,9 +108,9 @@ private:
 		return next;
 	}
 
-	/*
-		Constraint to find the outermost boundary of the Points by checking if the Points lie to the left otherwise adding the given Point p
-		Returns the Hull Points
+	/**
+		*Constraint to find the outermost boundary of the Points by checking if the Points lie to the left otherwise adding the given Point p
+		*Returns the Hull Points
 	*/
 	vector<Point> left(vector<Point>& v,Point p)
 	{
@@ -119,8 +123,8 @@ private:
 
 
 
-	/*
-		Implementation of Chan's Algorithm to compute Convex Hull
+	/**
+		*Main Implementation of Chan's Algorithm to compute Convex Hull
 	*/
 public:
 	void chans(vector<Point> v, MainWindow *w)

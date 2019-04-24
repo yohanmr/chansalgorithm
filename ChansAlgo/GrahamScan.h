@@ -10,22 +10,26 @@
 
 Point p0;
 using namespace std;
-
+/**
+  * A class to find the convex hull of chunks using Grahams Scan
+  */
 class GrahamScan{
   private:
-    /*
-    	Function used while sorting the Points using qsort() inbuilt function in C
-    */
+    ///function that finds the square of distance
     static double distsquare(Point p1, Point p2)
     {
       return (p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y);
     }
+    /// Function to find the orientation of 3 points with -1 being CW 1 being CCW and 0 a straight line
     static int orientation(Point p, Point q, Point r)
     {
     	double orient = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
     	if (orient == 0.0) return 0;  // Collinear
     	return (orient > 0)? -1: 1; // CW: -1 or CCW: 1
     }
+    /**
+    	*Function used while sorting the Points using qsort() inbuilt function in C
+    */
     static int compare(const void *vp1, const void *vp2)
     {
     	Point *p1 = (Point *)vp1;
@@ -35,6 +39,7 @@ class GrahamScan{
     		return (distsquare(p0, *p2) >= distsquare(p0, *p1))? -1 : 1;
     	return (orient == 1)? -1: 1;
     }
+    /// function to see if p is to the left of the set of points stored in v
     vector<Point> left(vector<Point>& v,Point p)
     {
     	while(v.size()>1 && orientation(v[v.size()-2],v[v.size()-1],p) != 1)
@@ -47,9 +52,9 @@ class GrahamScan{
 
     public:
 
-    /*
-    	Graham Scan algorithm to find convex hull from the given set of Points
-    	Returns the Hull Points from a vector of Points
+    /**
+    	*Graham Scan algorithm main function to find convex hull from the given set of Points
+    	*Returns the Hull Points from a vector of Points
     */
     vector<Point> runGrahamScan(vector<Point> &Points)
     {

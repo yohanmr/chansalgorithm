@@ -9,8 +9,8 @@
 
 using namespace std;
 
-/*
-Class for Points
+/**
+  * A class for points
 */
 class Point
 {
@@ -22,19 +22,19 @@ public:
 		y=py;
 	}
 
-	//check for equality between 2 objects of class Point
+	///check for equality between 2 objects of class Point
 
 	friend bool operator== (const Point& p1,const Point& p2){
 		return (p1.x==p2.x && p1.y==p2.y);
 	}
 
-	//check for non-equality between 2 objects of class Point
+	///check for non-equality between 2 objects of class Point
 
 	friend bool operator!= (const Point& p1,const Point& p2){
 		return (!(p1.x==p2.x && p1.y==p2.y));
 	}
 
-		//to check for print object of class Point to STDOUT
+	///to check for print object of class Point to STDOUT
 
 	friend ostream& operator<<(ostream& output,const Point& p){
 		output<<"("<<p.x<<","<<p.y<<")";

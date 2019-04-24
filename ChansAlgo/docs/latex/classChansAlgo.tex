@@ -12,14 +12,14 @@ Main class to find the convex hull of chunks using Chans Algorithm.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{classChansAlgo_a22dbbe0a5fa9362ec9ef54beb1764ca3}\label{classChansAlgo_a22dbbe0a5fa9362ec9ef54beb1764ca3}} 
 void \mbox{\hyperlink{classChansAlgo_a22dbbe0a5fa9362ec9ef54beb1764ca3}{chans}} (vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ v, \mbox{\hyperlink{classMainWindow}{Main\+Window}} $\ast$w)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main Implementation of Chan\textquotesingle{}s Algorithm to compute Convex Hull. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}\label{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}} 
 double \mbox{\hyperlink{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}{distsquare}} (\mbox{\hyperlink{classPoint}{Point}} p1, \mbox{\hyperlink{classPoint}{Point}} p2)
-\begin{DoxyCompactList}\small\item\em returns square of distance \end{DoxyCompactList}\item 
+\item 
 int \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}} (\mbox{\hyperlink{classPoint}{Point}} p, \mbox{\hyperlink{classPoint}{Point}} q, \mbox{\hyperlink{classPoint}{Point}} r)
 \item 
 int \mbox{\hyperlink{classChansAlgo_a453c41e5d460ff1ec91c0760b5e74b1b}{findtangent}} (vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ v, \mbox{\hyperlink{classPoint}{Point}} p)
@@ -40,69 +40,28 @@ Definition at line 12 of file Chans\+Algorithm.\+h.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classChansAlgo_a22dbbe0a5fa9362ec9ef54beb1764ca3}\label{classChansAlgo_a22dbbe0a5fa9362ec9ef54beb1764ca3}} 
-\index{ChansAlgo@{ChansAlgo}!chans@{chans}}
-\index{chans@{chans}!ChansAlgo@{ChansAlgo}}
-\doxysubsubsection{\texorpdfstring{chans()}{chans()}}
-{\footnotesize\ttfamily void Chans\+Algo\+::chans (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$}]{v,  }\item[{\mbox{\hyperlink{classMainWindow}{Main\+Window}} $\ast$}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}\label{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}} 
+\index{ChansAlgo@{ChansAlgo}!distsquare@{distsquare}}
+\index{distsquare@{distsquare}!ChansAlgo@{ChansAlgo}}
+\doxysubsubsection{\texorpdfstring{distsquare()}{distsquare()}}
+{\footnotesize\ttfamily double Chans\+Algo\+::distsquare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPoint}{Point}}}]{p1,  }\item[{\mbox{\hyperlink{classPoint}{Point}}}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
-Main Implementation of Chan\textquotesingle{}s Algorithm to compute Convex Hull 
+returns square of distance 
+\begin{DoxyParams}{Parameters}
+{\em p1} & Object of class point -\/ first point \\
+\hline
+{\em p2} & Object of class point -\/ second point \\
+\hline
+\end{DoxyParams}
 
-Definition at line 128 of file Chans\+Algorithm.\+h.
+
+Definition at line 18 of file Chans\+Algorithm.\+h.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{129     \{}
-\DoxyCodeLine{130         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} t=0; t< v.size(); ++t)}
-\DoxyCodeLine{131         \{}
-\DoxyCodeLine{132             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} m=1; m< (1<<(1<<t)); ++m)}
-\DoxyCodeLine{133             \{}
-\DoxyCodeLine{134                 w-\/>clearLines();}
-\DoxyCodeLine{135                 vector<vector<Point> > hulls;}
-\DoxyCodeLine{136                 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<v.size();i=i+m)}
-\DoxyCodeLine{137                 \{}
-\DoxyCodeLine{138                     vector<Point> chunk;}
-\DoxyCodeLine{139                     \textcolor{keywordflow}{if}(v.begin()+i+m <= v.end())}
-\DoxyCodeLine{140                         chunk.assign(v.begin()+i,v.begin()+i+m);}
-\DoxyCodeLine{141                     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{142                         chunk.assign(v.begin()+i,v.end());}
-\DoxyCodeLine{143                     hulls.push\_back(GS.\mbox{\hyperlink{classGrahamScan_a30c54195c5a095a9ce969a1c58edd7be}{runGrahamScan}}(chunk));}
-\DoxyCodeLine{144                 \}}
-\DoxyCodeLine{145                 cout<<\textcolor{stringliteral}{"\(\backslash\)nM (Chunk Size): "}<<m<<\textcolor{stringliteral}{"\(\backslash\)n"};}
-\DoxyCodeLine{146                 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<hulls.size();++i)}
-\DoxyCodeLine{147                 \{}
-\DoxyCodeLine{148                     cout<<\textcolor{stringliteral}{"Convex Hull for Hull \#"}<<i+1<<endl;}
-\DoxyCodeLine{149                     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<hulls[i].size();++j)}
-\DoxyCodeLine{150                     \{}
-\DoxyCodeLine{151                         cout<<hulls[i][j]<<\textcolor{stringliteral}{" "};}
-\DoxyCodeLine{152 }
-\DoxyCodeLine{153                     \}}
-\DoxyCodeLine{154 \textcolor{comment}{//                  w-\/>drawLines(hulls[i]);}}
-\DoxyCodeLine{155 \textcolor{comment}{//                    if(hulls[i].size() != 1)}}
-\DoxyCodeLine{156 \textcolor{comment}{//                  sleep(1);}}
-\DoxyCodeLine{157                     cout<<\textcolor{stringliteral}{"\(\backslash\)n"};}
-\DoxyCodeLine{158                 \}}
-\DoxyCodeLine{159                 vector<pair<int,int> > hull;}
-\DoxyCodeLine{160                 hull.push\_back(\mbox{\hyperlink{classChansAlgo_a18fd23986a8ea4e290dd4beaff7558b8}{extremept}}(hulls));}
-\DoxyCodeLine{161                 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<m; ++i)}
-\DoxyCodeLine{162                 \{}
-\DoxyCodeLine{163                     pair<int,int> p= \mbox{\hyperlink{classChansAlgo_ac055224e9f29aec358a19f4572e0bc3e}{next\_hullpt}}(hulls,hull[hull.size()-\/1]);}
-\DoxyCodeLine{164                     vector<Point> output;}
-\DoxyCodeLine{165                     \textcolor{keywordflow}{if}(p==hull[0])}
-\DoxyCodeLine{166                     \{}
-\DoxyCodeLine{167                         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<hull.size();++j)}
-\DoxyCodeLine{168                         \{}
-\DoxyCodeLine{169                             output.push\_back(hulls[hull[j].first][hull[j].second]);}
-\DoxyCodeLine{170                         \}}
-\DoxyCodeLine{171                                                 w-\/>clearLines();}
-\DoxyCodeLine{172                         w-\/>drawLines(output);}
-\DoxyCodeLine{173                         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{174                     \}}
-\DoxyCodeLine{175                     hull.push\_back(p);}
-\DoxyCodeLine{176                 \}}
-\DoxyCodeLine{177             \}}
-\DoxyCodeLine{178         \}}
-\DoxyCodeLine{179     \}}
+\DoxyCodeLine{19     \{}
+\DoxyCodeLine{20         \textcolor{keywordflow}{return} (p1.x -\/ p2.x)*(p1.x -\/ p2.x) + (p1.y -\/ p2.y)*(p1.y -\/ p2.y);}
+\DoxyCodeLine{21     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classChansAlgo_a18fd23986a8ea4e290dd4beaff7558b8}\label{classChansAlgo_a18fd23986a8ea4e290dd4beaff7558b8}} 
@@ -112,32 +71,37 @@ Definition at line 128 of file Chans\+Algorithm.\+h.
 {\footnotesize\ttfamily pair$<$double,double$>$ Chans\+Algo\+::extremept (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ $>$ \&}]{hulls }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
 Returns the pair of integers representing the Hull \# and the \mbox{\hyperlink{classPoint}{Point}} in that Hull which is the extreme amongst all given Hull Points 
+\begin{DoxyParams}{Parameters}
+{\em hulls} & Vector containing the hull points for various hulls stored as individual vectors. \\
+\hline
+\end{DoxyParams}
 
-Definition at line 65 of file Chans\+Algorithm.\+h.
+
+Definition at line 66 of file Chans\+Algorithm.\+h.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{66     \{}
-\DoxyCodeLine{67         \textcolor{keywordtype}{int} h= 0,p= 0;}
-\DoxyCodeLine{68         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<hulls.size(); ++i)}
-\DoxyCodeLine{69         \{}
-\DoxyCodeLine{70             \textcolor{keywordtype}{int} min\_index=0, min\_y = hulls[i][0].y;}
-\DoxyCodeLine{71             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=1; j< hulls[i].size(); ++j)}
-\DoxyCodeLine{72             \{}
-\DoxyCodeLine{73                 \textcolor{keywordflow}{if}(hulls[i][j].y < min\_y)}
-\DoxyCodeLine{74                 \{}
-\DoxyCodeLine{75                     min\_y=hulls[i][j].y;}
-\DoxyCodeLine{76                     min\_index=j;}
-\DoxyCodeLine{77                 \}}
-\DoxyCodeLine{78             \}}
-\DoxyCodeLine{79             \textcolor{keywordflow}{if}(hulls[i][min\_index].y < hulls[h][p].y)}
-\DoxyCodeLine{80             \{}
-\DoxyCodeLine{81                 h=i;}
-\DoxyCodeLine{82                 p=min\_index;}
-\DoxyCodeLine{83             \}}
-\DoxyCodeLine{84         \}}
-\DoxyCodeLine{85         \textcolor{keywordflow}{return} make\_pair(h,p);}
-\DoxyCodeLine{86     \}}
+\DoxyCodeLine{67     \{}
+\DoxyCodeLine{68         \textcolor{keywordtype}{int} h= 0,p= 0;}
+\DoxyCodeLine{69         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<hulls.size(); ++i)}
+\DoxyCodeLine{70         \{}
+\DoxyCodeLine{71             \textcolor{keywordtype}{int} min\_index=0, min\_y = hulls[i][0].y;}
+\DoxyCodeLine{72             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=1; j< hulls[i].size(); ++j)}
+\DoxyCodeLine{73             \{}
+\DoxyCodeLine{74                 \textcolor{keywordflow}{if}(hulls[i][j].y < min\_y)}
+\DoxyCodeLine{75                 \{}
+\DoxyCodeLine{76                     min\_y=hulls[i][j].y;}
+\DoxyCodeLine{77                     min\_index=j;}
+\DoxyCodeLine{78                 \}}
+\DoxyCodeLine{79             \}}
+\DoxyCodeLine{80             \textcolor{keywordflow}{if}(hulls[i][min\_index].y < hulls[h][p].y)}
+\DoxyCodeLine{81             \{}
+\DoxyCodeLine{82                 h=i;}
+\DoxyCodeLine{83                 p=min\_index;}
+\DoxyCodeLine{84             \}}
+\DoxyCodeLine{85         \}}
+\DoxyCodeLine{86         \textcolor{keywordflow}{return} make\_pair(h,p);}
+\DoxyCodeLine{87     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classChansAlgo_a453c41e5d460ff1ec91c0760b5e74b1b}\label{classChansAlgo_a453c41e5d460ff1ec91c0760b5e74b1b}} 
@@ -147,35 +111,42 @@ Definition at line 65 of file Chans\+Algorithm.\+h.
 {\footnotesize\ttfamily int Chans\+Algo\+::findtangent (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$}]{v,  }\item[{\mbox{\hyperlink{classPoint}{Point}}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
 Returns the index of the \mbox{\hyperlink{classPoint}{Point}} to which the tangent is drawn from \mbox{\hyperlink{classPoint}{Point}} p. 
+\begin{DoxyParams}{Parameters}
+{\em v} & vector of objects of class points representing the hull. \\
+\hline
+{\em p} & Object of class point from where tangent needs to be drawn \\
+\hline
+\end{DoxyParams}
 
-Definition at line 36 of file Chans\+Algorithm.\+h.
+
+Definition at line 38 of file Chans\+Algorithm.\+h.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{37     \{}
-\DoxyCodeLine{38         \textcolor{keywordtype}{int} lend=0;}
-\DoxyCodeLine{39         \textcolor{keywordtype}{int} rend= v.size();}
-\DoxyCodeLine{40         \textcolor{keywordtype}{int} l\_before = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[0], v[v.size()-\/1]);}
-\DoxyCodeLine{41         \textcolor{keywordtype}{int} l\_after = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[0], v[(lend + 1) \% v.size()]);}
-\DoxyCodeLine{42         \textcolor{comment}{// A binary search based approach to find a straight line in between a left and a right turning line}}
-\DoxyCodeLine{43         \textcolor{keywordflow}{while} (lend < rend)}
-\DoxyCodeLine{44         \{}
-\DoxyCodeLine{45             \textcolor{keywordtype}{int} center = ((lend + rend)/2);}
-\DoxyCodeLine{46             \textcolor{keywordtype}{int} c\_before = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[center], v[(center -\/ 1) \% v.size()]);}
-\DoxyCodeLine{47             \textcolor{keywordtype}{int} c\_side = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[lend], v[center]);}
-\DoxyCodeLine{48             \textcolor{keywordtype}{int} c\_after = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[center], v[(center + 1) \% v.size()]);}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{50             \textcolor{keywordflow}{if} (c\_before != -\/1 and c\_after != -\/1)}
-\DoxyCodeLine{51                 \textcolor{keywordflow}{return} center;}
-\DoxyCodeLine{52             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((c\_side == 1) and (l\_after == -\/1 or l\_before == l\_after) or (c\_side == -\/1 and c\_before == -\/1))}
-\DoxyCodeLine{53                 rend = center;}
-\DoxyCodeLine{54             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{55                 lend = center + 1 ;}
-\DoxyCodeLine{56             l\_before = -\/c\_after;}
-\DoxyCodeLine{57             l\_after = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[lend], v[(lend + 1) \% v.size()]);}
-\DoxyCodeLine{58         \}}
-\DoxyCodeLine{59         \textcolor{keywordflow}{return} lend;}
-\DoxyCodeLine{60     \}}
+\DoxyCodeLine{39     \{}
+\DoxyCodeLine{40         \textcolor{keywordtype}{int} lend=0;}
+\DoxyCodeLine{41         \textcolor{keywordtype}{int} rend= v.size();}
+\DoxyCodeLine{42         \textcolor{keywordtype}{int} l\_before = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[0], v[v.size()-\/1]);}
+\DoxyCodeLine{43         \textcolor{keywordtype}{int} l\_after = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[0], v[(lend + 1) \% v.size()]);}
+\DoxyCodeLine{44         \textcolor{comment}{// A binary search based approach to find a straight line in between a left and a right turning line}}
+\DoxyCodeLine{45         \textcolor{keywordflow}{while} (lend < rend)}
+\DoxyCodeLine{46         \{}
+\DoxyCodeLine{47             \textcolor{keywordtype}{int} center = ((lend + rend)/2);}
+\DoxyCodeLine{48             \textcolor{keywordtype}{int} c\_before = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[center], v[(center -\/ 1) \% v.size()]);}
+\DoxyCodeLine{49             \textcolor{keywordtype}{int} c\_side = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[lend], v[center]);}
+\DoxyCodeLine{50             \textcolor{keywordtype}{int} c\_after = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[center], v[(center + 1) \% v.size()]);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52             \textcolor{keywordflow}{if} (c\_before != -\/1 and c\_after != -\/1)}
+\DoxyCodeLine{53                 \textcolor{keywordflow}{return} center;}
+\DoxyCodeLine{54             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((c\_side == 1) and (l\_after == -\/1 or l\_before == l\_after) or (c\_side == -\/1 and c\_before == -\/1))}
+\DoxyCodeLine{55                 rend = center;}
+\DoxyCodeLine{56             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{57                 lend = center + 1 ;}
+\DoxyCodeLine{58             l\_before = -\/c\_after;}
+\DoxyCodeLine{59             l\_after = \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p, v[lend], v[(lend + 1) \% v.size()]);}
+\DoxyCodeLine{60         \}}
+\DoxyCodeLine{61         \textcolor{keywordflow}{return} lend;}
+\DoxyCodeLine{62     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classChansAlgo_a31304fe8b01d858c44900c363575bfcf}\label{classChansAlgo_a31304fe8b01d858c44900c363575bfcf}} 
@@ -186,17 +157,17 @@ Definition at line 36 of file Chans\+Algorithm.\+h.
 
 Constraint to find the outermost boundary of the Points by checking if the Points lie to the left otherwise adding the given \mbox{\hyperlink{classPoint}{Point}} p Returns the Hull Points 
 
-Definition at line 113 of file Chans\+Algorithm.\+h.
+Definition at line 112 of file Chans\+Algorithm.\+h.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{114     \{}
-\DoxyCodeLine{115         \textcolor{keywordflow}{while}(v.size()>1 \&\& \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(v[v.size()-\/2],v[v.size()-\/1],p) != 1)}
-\DoxyCodeLine{116             v.pop\_back();}
-\DoxyCodeLine{117         \textcolor{keywordflow}{if}(!v.size() || v[v.size()-\/1] != p)}
-\DoxyCodeLine{118             v.push\_back(p);}
-\DoxyCodeLine{119         \textcolor{keywordflow}{return} v;}
-\DoxyCodeLine{120     \}}
+\DoxyCodeLine{113     \{}
+\DoxyCodeLine{114         \textcolor{keywordflow}{while}(v.size()>1 \&\& \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(v[v.size()-\/2],v[v.size()-\/1],p) != 1)}
+\DoxyCodeLine{115             v.pop\_back();}
+\DoxyCodeLine{116         \textcolor{keywordflow}{if}(!v.size() || v[v.size()-\/1] != p)}
+\DoxyCodeLine{117             v.push\_back(p);}
+\DoxyCodeLine{118         \textcolor{keywordflow}{return} v;}
+\DoxyCodeLine{119     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classChansAlgo_ac055224e9f29aec358a19f4572e0bc3e}\label{classChansAlgo_ac055224e9f29aec358a19f4572e0bc3e}} 
@@ -206,27 +177,34 @@ Definition at line 113 of file Chans\+Algorithm.\+h.
 {\footnotesize\ttfamily pair$<$double,double$>$ Chans\+Algo\+::next\+\_\+hullpt (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ $>$ \&}]{hulls,  }\item[{pair$<$ int, int $>$}]{l\+Point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
 Returns the pair of integers representing the Hull \# and the \mbox{\hyperlink{classPoint}{Point}} in that Hull to which the \mbox{\hyperlink{classPoint}{Point}} l\+Point will be joined 
+\begin{DoxyParams}{Parameters}
+{\em hulls} & Vector containing the hull points for various hulls stored as individual vectors. \\
+\hline
+{\em lpoint} & Pair of the Hull \# and the leftmost extreme point contained in that hull, amongst all the obtained hulls \\
+\hline
+\end{DoxyParams}
 
-Definition at line 91 of file Chans\+Algorithm.\+h.
+
+Definition at line 92 of file Chans\+Algorithm.\+h.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{92     \{}
-\DoxyCodeLine{93         \mbox{\hyperlink{classPoint}{Point}} p = hulls[lPoint.first][lPoint.second];}
-\DoxyCodeLine{94         pair<int,int> next = make\_pair(lPoint.first, (lPoint.second + 1) \% hulls[lPoint.first].size());}
-\DoxyCodeLine{95         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} h=0; h< hulls.size(); h++)}
-\DoxyCodeLine{96         \{}
-\DoxyCodeLine{97             \textcolor{keywordflow}{if}(h != lPoint.first)\{}
-\DoxyCodeLine{98                 \textcolor{keywordtype}{int} s= \mbox{\hyperlink{classChansAlgo_a453c41e5d460ff1ec91c0760b5e74b1b}{findtangent}}(hulls[h],p);}
-\DoxyCodeLine{99                 \mbox{\hyperlink{classPoint}{Point}} q= hulls[next.first][next.second];}
-\DoxyCodeLine{100                 \mbox{\hyperlink{classPoint}{Point}} r= hulls[h][s];}
-\DoxyCodeLine{101                 \textcolor{keywordtype}{int} t= \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p,q,r);}
-\DoxyCodeLine{102                 \textcolor{keywordflow}{if}( t== -\/1 || (t==0) \&\& \mbox{\hyperlink{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}{distsquare}}(p,r)>\mbox{\hyperlink{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}{distsquare}}(p,q))}
-\DoxyCodeLine{103                     next = make\_pair(h,s);}
-\DoxyCodeLine{104             \}}
-\DoxyCodeLine{105         \}}
-\DoxyCodeLine{106         \textcolor{keywordflow}{return} next;}
-\DoxyCodeLine{107     \}}
+\DoxyCodeLine{93     \{}
+\DoxyCodeLine{94         \mbox{\hyperlink{classPoint}{Point}} p = hulls[lPoint.first][lPoint.second];}
+\DoxyCodeLine{95         pair<int,int> next = make\_pair(lPoint.first, (lPoint.second + 1) \% hulls[lPoint.first].size());}
+\DoxyCodeLine{96         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} h=0; h< hulls.size(); h++)}
+\DoxyCodeLine{97         \{}
+\DoxyCodeLine{98             \textcolor{keywordflow}{if}(h != lPoint.first)\{}
+\DoxyCodeLine{99                 \textcolor{keywordtype}{int} s= \mbox{\hyperlink{classChansAlgo_a453c41e5d460ff1ec91c0760b5e74b1b}{findtangent}}(hulls[h],p);}
+\DoxyCodeLine{100                 \mbox{\hyperlink{classPoint}{Point}} q= hulls[next.first][next.second];}
+\DoxyCodeLine{101                 \mbox{\hyperlink{classPoint}{Point}} r= hulls[h][s];}
+\DoxyCodeLine{102                 \textcolor{keywordtype}{int} t= \mbox{\hyperlink{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}{orientation}}(p,q,r);}
+\DoxyCodeLine{103                 \textcolor{keywordflow}{if}( t== -\/1 || (t==0) \&\& \mbox{\hyperlink{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}{distsquare}}(p,r)>\mbox{\hyperlink{classChansAlgo_a345d0340e3c42065023f2fcffb8b4e04}{distsquare}}(p,q))}
+\DoxyCodeLine{104                     next = make\_pair(h,s);}
+\DoxyCodeLine{105             \}}
+\DoxyCodeLine{106         \}}
+\DoxyCodeLine{107         \textcolor{keywordflow}{return} next;}
+\DoxyCodeLine{108     \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}\label{classChansAlgo_a6229e7d33e2f455cd561d3697e1a6f0d}} 
@@ -236,16 +214,25 @@ Definition at line 91 of file Chans\+Algorithm.\+h.
 {\footnotesize\ttfamily int Chans\+Algo\+::orientation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPoint}{Point}}}]{p,  }\item[{\mbox{\hyperlink{classPoint}{Point}}}]{q,  }\item[{\mbox{\hyperlink{classPoint}{Point}}}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
 Returns orientation of the line joining Points p and q and line joining Points q and r 
+\begin{DoxyParams}{Parameters}
+{\em p} & Object of class point -\/ first point \\
+\hline
+{\em q} & Object of class point -\/ second point \\
+\hline
+{\em r} & Object of class point -\/ third point \\
+\hline
+\end{DoxyParams}
 
-Definition at line 24 of file Chans\+Algorithm.\+h.
+
+Definition at line 27 of file Chans\+Algorithm.\+h.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{25     \{}
-\DoxyCodeLine{26         \textcolor{keywordtype}{double} orient = (q.y -\/ p.y) * (r.x -\/ q.x) -\/ (q.x -\/ p.x) * (r.y -\/ q.y);}
-\DoxyCodeLine{27         \textcolor{keywordflow}{if} (orient == 0.0) \textcolor{keywordflow}{return} 0;  \textcolor{comment}{// Collinear}}
-\DoxyCodeLine{28         \textcolor{keywordflow}{return} (orient > 0)? -\/1: 1; \textcolor{comment}{// CW: -\/1 or CCW: 1}}
-\DoxyCodeLine{29     \}}
+\DoxyCodeLine{28     \{}
+\DoxyCodeLine{29         \textcolor{keywordtype}{double} orient = (q.y -\/ p.y) * (r.x -\/ q.x) -\/ (q.x -\/ p.x) * (r.y -\/ q.y);}
+\DoxyCodeLine{30         \textcolor{keywordflow}{if} (orient == 0.0) \textcolor{keywordflow}{return} 0;  \textcolor{comment}{// Collinear}}
+\DoxyCodeLine{31         \textcolor{keywordflow}{return} (orient > 0)? -\/1: 1; \textcolor{comment}{// CW: -\/1 or CCW: 1}}
+\DoxyCodeLine{32     \}}
 
 \end{DoxyCode}
 

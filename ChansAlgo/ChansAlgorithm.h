@@ -13,14 +13,17 @@ class ChansAlgo
 {
 private:
 	///returns square of distance
+	///@param p1: Object of class point - first point
+	///@param p2: Object of class point - second point
 	double distsquare(Point p1, Point p2)
 	{
 		return (p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y);
 	}
 
-	/**
-		*Returns orientation of the line joining Points p and q and line joining Points q and r
-	*/
+///Returns orientation of the line joining Points p and q and line joining Points q and r
+	///@param p: Object of class point - first point
+	///@param q: Object of class point - second point
+	///@param r: Object of class point - third point
 	int orientation(Point p, Point q, Point r)
 	{
 		double orient = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
@@ -29,10 +32,9 @@ private:
 	}
 
 
-	/**
-		*Returns the index of the Point to which the tangent is drawn from Point p.
-
-	*/
+	///Returns the index of the Point to which the tangent is drawn from Point p.
+	///@param v: vector of objects of class points representing the hull.
+	///@param p: Object of class point from where tangent needs to be drawn
 	int findtangent(vector<Point> v,Point p)
 	{
 		int lend=0;
@@ -59,9 +61,8 @@ private:
 		return lend;
 	}
 
-	/**
-		*Returns the pair of integers representing the Hull # and the Point in that Hull which is the extreme amongst all given Hull Points
-	*/
+///Returns the pair of integers representing the Hull # and the Point in that Hull which is the extreme amongst all given Hull Points
+///@param hulls: Vector containing the hull points for various hulls stored as individual vectors.
 	pair<double,double> extremept(vector<vector<Point> >& hulls)
 	{
 		int h= 0,p= 0;
@@ -85,9 +86,9 @@ private:
 		return make_pair(h,p);
 	}
 
-	/**
-		*Returns the pair of integers representing the Hull # and the Point in that Hull to which the Point lPoint will be joined
-	*/
+	///Returns the pair of integers representing the Hull # and the Point in that Hull to which the Point lPoint will be joined
+	///@param hulls: Vector containing the hull points for various hulls stored as individual vectors.
+	///@param lpoint: Pair of the Hull # and the leftmost extreme point contained in that hull, amongst all the obtained hulls
 	pair<double,double> next_hullpt(vector<vector<Point> >& hulls, pair<int,int> lPoint)
 	{
 		Point p = hulls[lPoint.first][lPoint.second];
@@ -106,10 +107,8 @@ private:
 		return next;
 	}
 
-	/**
-		*Constraint to find the outermost boundary of the Points by checking if the Points lie to the left otherwise adding the given Point p
-		*Returns the Hull Points
-	*/
+///Constraint to find the outermost boundary of the Points by checking if the Points lie to the left otherwise adding the given Point p
+///Returns the Hull Points
 	vector<Point> left(vector<Point>& v,Point p)
 	{
 		while(v.size()>1 && orientation(v[v.size()-2],v[v.size()-1],p) != 1)
@@ -121,9 +120,7 @@ private:
 
 
 
-	/**
-		*Main Implementation of Chan's Algorithm to compute Convex Hull
-	*/
+	///Main Implementation of Chan's Algorithm to compute Convex Hull
 public:
 	void chans(vector<Point> v, MainWindow *w)
 	{

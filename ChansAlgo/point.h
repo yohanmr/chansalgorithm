@@ -9,9 +9,7 @@
 
 using namespace std;
 
-/**
-  * A class for points
-*/
+///A class for points
 class Point
 {
 public:

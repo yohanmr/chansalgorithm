@@ -10,9 +10,7 @@
 
 Point p0;
 using namespace std;
-/**
-  * A class to find the convex hull of chunks using Grahams Scan
-  */
+/// A class to find the convex hull of chunks using Grahams Scan
 class GrahamScan{
   private:
     ///function that finds the square of distance
@@ -27,9 +25,8 @@ class GrahamScan{
     	if (orient == 0.0) return 0;  // Collinear
     	return (orient > 0)? -1: 1; // CW: -1 or CCW: 1
     }
-    /**
-    	*Function used while sorting the Points using qsort() inbuilt function in C
-    */
+  ///Function used while sorting the Points using qsort() inbuilt function in C
+
     static int compare(const void *vp1, const void *vp2)
     {
     	Point *p1 = (Point *)vp1;
@@ -52,10 +49,8 @@ class GrahamScan{
 
     public:
 
-    /**
-    	*Graham Scan algorithm main function to find convex hull from the given set of Points
-    	*Returns the Hull Points from a vector of Points
-    */
+  ///Graham Scan algorithm main function to find convex hull from the given set of Points
+  ///Returns the Hull Points from a vector of Points
     vector<Point> runGrahamScan(vector<Point> &Points)
     {
       	if(Points.size()<=1)

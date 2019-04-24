@@ -4,6 +4,7 @@
 #include "point.h"
 #include "GrahamScan.h"
 #include "mainwindow.h"
+#include "unistd.h"
 using namespace std;
 
 GrahamScan GS;
@@ -128,6 +129,7 @@ public:
 		{
 			for(int m=1; m< (1<<(1<<t)); ++m)
 			{
+				w->clearLines();
 				vector<vector<Point> > hulls;
 				for(int i=0;i<v.size();i=i+m)
 				{
@@ -143,7 +145,12 @@ public:
 				{
 					cout<<"Convex Hull for Hull #"<<i+1<<endl;
 					for(int j=0; j<hulls[i].size();++j)
+					{
 						cout<<hulls[i][j]<<" ";
+
+					}
+					w->drawLines(hulls[i]);
+					sleep(1);
 					cout<<"\n";
 				}
 				vector<pair<int,int> > hull;
@@ -158,6 +165,7 @@ public:
 						{
 							output.push_back(hulls[hull[j].first][hull[j].second]);
 						}
+												w->clearLines();
                         w->drawLines(output);
                         return;
 					}

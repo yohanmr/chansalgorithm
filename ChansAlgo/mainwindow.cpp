@@ -98,6 +98,6 @@ void MainWindow::on_btn_ChansAlgo_clicked()
             p.y = qv_y[i];
             points.push_back(p);
     }
-    GrahamScan *obj = new GrahamScan(points);
-    obj->runGrahamScan(points, this);
+//    GrahamScan *obj = new GrahamScan(points);
+//    obj->runGrahamScan(points, this);
 }

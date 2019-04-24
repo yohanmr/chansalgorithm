@@ -20,7 +20,7 @@ public:
     void addPoint(double x, double y);
     void clearData();
     void plot();
-    void drawLines(std::vector<point> points);
+    void drawLines(std::vector<Point> points);
     void clearLines();
 
 private slots:

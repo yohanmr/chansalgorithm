@@ -31,8 +31,7 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     GrahamScan.h \
-    qcustomplot.h \
-    customStack.h
+    qcustomplot.h
 
 FORMS += \
         mainwindow.ui

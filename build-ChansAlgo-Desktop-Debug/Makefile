@@ -113,6 +113,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../ChansAlgo/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -134,8 +135,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../ChansAlgo/ChansAlgo.pro ../ChansAlgo/mainwindow.h \
 		../ChansAlgo/GrahamScan.h \
-		../ChansAlgo/qcustomplot.h \
-		../ChansAlgo/customStack.h ../ChansAlgo/main.cpp \
+		../ChansAlgo/qcustomplot.h ../ChansAlgo/main.cpp \
 		../ChansAlgo/mainwindow.cpp \
 		../ChansAlgo/qcustomplot.cpp
 QMAKE_TARGET  = ChansAlgo
@@ -203,6 +203,7 @@ Makefile: ../ChansAlgo/ChansAlgo.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -282,6 +283,7 @@ Makefile: ../ChansAlgo/ChansAlgo.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -321,7 +323,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ChansAlgo/mainwindow.h ../ChansAlgo/GrahamScan.h ../ChansAlgo/qcustomplot.h ../ChansAlgo/customStack.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ChansAlgo/mainwindow.h ../ChansAlgo/GrahamScan.h ../ChansAlgo/qcustomplot.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../ChansAlgo/main.cpp ../ChansAlgo/mainwindow.cpp ../ChansAlgo/qcustomplot.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ChansAlgo/mainwindow.ui $(DISTDIR)/
 
@@ -358,7 +360,8 @@ moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_qcustomplot.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_qcustomplot.cpp
-moc_mainwindow.cpp: ../ChansAlgo/mainwindow.h \
+moc_mainwindow.cpp: ../ChansAlgo/point.h \
+		../ChansAlgo/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yashdeep/Documents/academic-projects/ChansAlgorithm/ChansAlgo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ChansAlgo/mainwindow.h -o moc_mainwindow.cpp
@@ -388,13 +391,15 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: ../ChansAlgo/main.cpp ../ChansAlgo/mainwindow.h
+main.o: ../ChansAlgo/main.cpp ../ChansAlgo/mainwindow.h \
+		../ChansAlgo/point.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ChansAlgo/main.cpp
 
 mainwindow.o: ../ChansAlgo/mainwindow.cpp ../ChansAlgo/mainwindow.h \
+		../ChansAlgo/point.h \
 		ui_mainwindow.h \
-		../ChansAlgo/GrahamScan.h \
-		../ChansAlgo/customStack.h
+		../ChansAlgo/qcustomplot.h \
+		../ChansAlgo/GrahamScan.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ChansAlgo/mainwindow.cpp
 
 qcustomplot.o: ../ChansAlgo/qcustomplot.cpp ../ChansAlgo/qcustomplot.h

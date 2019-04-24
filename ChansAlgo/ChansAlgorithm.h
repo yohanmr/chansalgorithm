@@ -150,6 +150,7 @@ public:
 
 					}
 					w->drawLines(hulls[i]);
+                    if(hulls[i].size() != 1)
 					sleep(1);
 					cout<<"\n";
 				}

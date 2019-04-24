@@ -7,7 +7,7 @@
 using namespace std;
 
 GrahamScan GS;
-class CHANSALGO
+class ChansAlgo
 {
 private:
 	double distsquare(Point p1, Point p2)
@@ -158,8 +158,8 @@ public:
 						{
 							output.push_back(hulls[hull[j].first][hull[j].second]);
 						}
-						w->drawLines(output)
-
+                        w->drawLines(output);
+                        return;
 					}
 					hull.push_back(p);
 				}
@@ -168,6 +168,7 @@ public:
 	}
 };
 
+#endif
 
 // int main()
 // {

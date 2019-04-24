@@ -57,13 +57,13 @@ class GrahamScan{
       		return Points;
       	qsort(&Points[0], Points.size(), sizeof(Point), compare);
       	vector<Point> lower_hull;
-      	for(int i=0; i<Points.size(); ++i)
+        for(unsigned int i=0; i<Points.size(); ++i)
       		lower_hull = left(lower_hull,Points[i]);
       	reverse(Points.begin(),Points.end());
       	vector<Point> upper_hull;
-      	for(int i=0; i<Points.size(); ++i)
+        for(unsigned int i=0; i<Points.size(); ++i)
       		upper_hull = left(upper_hull,Points[i]);
-      	for(int i=1;i<upper_hull.size();++i)
+        for(unsigned int i=1;i<upper_hull.size();++i)
       		lower_hull.push_back(upper_hull[i]);
       	return lower_hull;
     }

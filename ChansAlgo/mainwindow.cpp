@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "GrahamScan.h"
+//#include "GrahamScan.h"
+#include "ChansAlgorithm.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -98,6 +99,7 @@ void MainWindow::on_btn_ChansAlgo_clicked()
             p.y = qv_y[i];
             points.push_back(p);
     }
-//    GrahamScan *obj = new GrahamScan(points);
-//    obj->runGrahamScan(points, this);
+    ChansAlgo *obj = new ChansAlgo;
+    obj->chans(points, this);
+
 }

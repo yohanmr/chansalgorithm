@@ -135,7 +135,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../ChansAlgo/ChansAlgo.pro ../ChansAlgo/mainwindow.h \
 		../ChansAlgo/GrahamScan.h \
-		../ChansAlgo/qcustomplot.h ../ChansAlgo/main.cpp \
+		../ChansAlgo/qcustomplot.h \
+		../ChansAlgo/GrahamScan.h \
+		../ChansAlgo/ChansAlgorithm.h ../ChansAlgo/main.cpp \
 		../ChansAlgo/mainwindow.cpp \
 		../ChansAlgo/qcustomplot.cpp
 QMAKE_TARGET  = ChansAlgo
@@ -323,7 +325,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ChansAlgo/mainwindow.h ../ChansAlgo/GrahamScan.h ../ChansAlgo/qcustomplot.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ChansAlgo/mainwindow.h ../ChansAlgo/GrahamScan.h ../ChansAlgo/qcustomplot.h ../ChansAlgo/GrahamScan.h ../ChansAlgo/ChansAlgorithm.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../ChansAlgo/main.cpp ../ChansAlgo/mainwindow.cpp ../ChansAlgo/qcustomplot.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ChansAlgo/mainwindow.ui $(DISTDIR)/
 
@@ -399,6 +401,7 @@ mainwindow.o: ../ChansAlgo/mainwindow.cpp ../ChansAlgo/mainwindow.h \
 		../ChansAlgo/point.h \
 		ui_mainwindow.h \
 		../ChansAlgo/qcustomplot.h \
+		../ChansAlgo/ChansAlgorithm.h \
 		../ChansAlgo/GrahamScan.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ChansAlgo/mainwindow.cpp
 

@@ -1,0 +1,76 @@
+Computational Geometry Project. ~\newline
+ This is a dynamic demo of Chan\textquotesingle{}s Algorithm, an optimal, output-\/sensitive algorithm for computing the convex hull of a point set in O(nlogh) time.~\newline
+ Where n is the number of input points and h is the number of output hull points ~\newline
+
+
+Given a of m points, we find the convex hull of each group with an O(nlogn) algorithm.~\newline
+ In this demo we use Graham Scan. ~\newline
+ Because each group has size m we can convex hull each group in O(mlogm). There are O(n/m) groups. ~\newline
+
+
+We then use Gift wrapping, an O(nh) algorithm on the small convex hulls. ~\newline
+
+
+To use gift wrapping on convex hulls rather than points we can perform a binary search to determine the tangent between an extreme point and a convex hull. A binary search on a small convex hull takes O(logm). ~\newline
+
+
+We can compute tangents for all O(n/m) groups in O(n/m $\ast$ logm) time. We use the tangent with the largest angle. ~\newline
+
+
+By doing this we get one edge of the overall convex hull. We must do this for all h hull points. Assuming that m $<$ h so this step is O(nlogh) like the last step. ~\newline
+ 
+
+We want to increase m until it equals h. If we increase m too slowly our gift wrapping time overall will surpass O(nlogh).~\newline
+
+
+On the other hand, if we increase m too quickly some gift wrapping iteration will take much more than O(nlogh) on its own. ~\newline
+
+
+To solve this problem we can utilize a double exponential. We let m = 2$^\wedge$2$^\wedge$t where t is the current iteration number. ~\newline
+
+
+We throw away the work we do in each attempt at finding an m equal to h. Because iterations form a geometric series the total work is still O(nlogh). ~\newline
+\hypertarget{index_autotoc_md4}{}\doxysection{Results}\label{index_autotoc_md4}
+We have given an implementation of the Chan\textquotesingle{}s Algorithm for finding Convex Hull .~\newline
+ We randomly generated points and ran the algorithm on the points to find the convex hull.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Number of Points  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Run Time -\/ Total C\+PU time(s)   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Number of Points  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Run Time -\/ Total C\+PU time(s)   }\\\cline{1-2}
+\endhead
+\PBS\centering 2  &\PBS\centering $\sim$0.005   \\\cline{1-2}
+\PBS\centering 10  &\PBS\centering $\sim$0.005   \\\cline{1-2}
+\PBS\centering 50  &\PBS\centering 0.\+011   \\\cline{1-2}
+\PBS\centering 100  &\PBS\centering 0.\+023   \\\cline{1-2}
+\PBS\centering 500  &\PBS\centering 0.\+110   \\\cline{1-2}
+\PBS\centering 1,000  &\PBS\centering 0.\+180   \\\cline{1-2}
+\PBS\centering 5,000  &\PBS\centering 2.\+500   \\\cline{1-2}
+\PBS\centering 10,000  &\PBS\centering 13.\+400   \\\cline{1-2}
+\PBS\centering 20,000  &\PBS\centering 61.\+170   \\\cline{1-2}
+\end{longtabu}
+
+
+~\newline
+ \hypertarget{index_autotoc_md5}{}\doxysubsection{Input}\label{index_autotoc_md5}
+
+
+~\newline
+ \hypertarget{index_autotoc_md6}{}\doxysubsection{Output}\label{index_autotoc_md6}
+
+
+~\newline
+ ~\newline
+\hypertarget{index_autotoc_md7}{}\doxysubsection{Instructions for running the code\+:}\label{index_autotoc_md7}
+
+\begin{DoxyItemize}
+\item Install Qt5 for gui\+:
+\item Install matplotlib for displaying results\+:
+\item compile run.\+cpp
+\item run code\+: bash execute.\+sh 
+\end{DoxyItemize}

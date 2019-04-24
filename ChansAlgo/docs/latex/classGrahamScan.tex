@@ -1,0 +1,94 @@
+\hypertarget{classGrahamScan}{}\doxysection{Graham\+Scan Class Reference}
+\label{classGrahamScan}\index{GrahamScan@{GrahamScan}}
+
+
+{\ttfamily \#include $<$Graham\+Scan.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ \mbox{\hyperlink{classGrahamScan_a30c54195c5a095a9ce969a1c58edd7be}{run\+Graham\+Scan}} (vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ \&Points)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGrahamScan_a6fae7713bd34903d6f9544a3beb11189}\label{classGrahamScan_a6fae7713bd34903d6f9544a3beb11189}} 
+vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ \mbox{\hyperlink{classGrahamScan_a6fae7713bd34903d6f9544a3beb11189}{left}} (vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ \&v, \mbox{\hyperlink{classPoint}{Point}} p)
+\begin{DoxyCompactList}\small\item\em function to see if p is to the left of the set of points stored in v \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGrahamScan_a71ffa36fa9a45500c1bf3f85da027c61}\label{classGrahamScan_a71ffa36fa9a45500c1bf3f85da027c61}} 
+static double \mbox{\hyperlink{classGrahamScan_a71ffa36fa9a45500c1bf3f85da027c61}{distsquare}} (\mbox{\hyperlink{classPoint}{Point}} p1, \mbox{\hyperlink{classPoint}{Point}} p2)
+\begin{DoxyCompactList}\small\item\em function that finds the square of distance \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGrahamScan_a22c776bb780124f3b150da7517cc6358}\label{classGrahamScan_a22c776bb780124f3b150da7517cc6358}} 
+static int \mbox{\hyperlink{classGrahamScan_a22c776bb780124f3b150da7517cc6358}{orientation}} (\mbox{\hyperlink{classPoint}{Point}} p, \mbox{\hyperlink{classPoint}{Point}} q, \mbox{\hyperlink{classPoint}{Point}} r)
+\begin{DoxyCompactList}\small\item\em Function to find the orientation of 3 points with -\/1 being CW 1 being C\+CW and 0 a straight line. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classGrahamScan_a8b5454a7181029386a9b6fd71ce95f16}{compare}} (const void $\ast$vp1, const void $\ast$vp2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to find the convex hull of chunks using Grahams Scan 
+
+Definition at line 16 of file Graham\+Scan.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGrahamScan_a8b5454a7181029386a9b6fd71ce95f16}\label{classGrahamScan_a8b5454a7181029386a9b6fd71ce95f16}} 
+\index{GrahamScan@{GrahamScan}!compare@{compare}}
+\index{compare@{compare}!GrahamScan@{GrahamScan}}
+\doxysubsubsection{\texorpdfstring{compare()}{compare()}}
+{\footnotesize\ttfamily static int Graham\+Scan\+::compare (\begin{DoxyParamCaption}\item[{const void $\ast$}]{vp1,  }\item[{const void $\ast$}]{vp2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+Function used while sorting the Points using qsort() inbuilt function in C 
+
+Definition at line 33 of file Graham\+Scan.\+h.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{34     \{}
+\DoxyCodeLine{35         \mbox{\hyperlink{classPoint}{Point}} *p1 = (\mbox{\hyperlink{classPoint}{Point}} *)vp1;}
+\DoxyCodeLine{36         \mbox{\hyperlink{classPoint}{Point}} *p2 = (\mbox{\hyperlink{classPoint}{Point}} *)vp2;}
+\DoxyCodeLine{37         \textcolor{keywordtype}{int} orient = \mbox{\hyperlink{classGrahamScan_a22c776bb780124f3b150da7517cc6358}{orientation}}(p0, *p1, *p2);}
+\DoxyCodeLine{38         \textcolor{keywordflow}{if} (orient == 0)}
+\DoxyCodeLine{39             \textcolor{keywordflow}{return} (\mbox{\hyperlink{classGrahamScan_a71ffa36fa9a45500c1bf3f85da027c61}{distsquare}}(p0, *p2) >= \mbox{\hyperlink{classGrahamScan_a71ffa36fa9a45500c1bf3f85da027c61}{distsquare}}(p0, *p1))? -\/1 : 1;}
+\DoxyCodeLine{40         \textcolor{keywordflow}{return} (orient == 1)? -\/1: 1;}
+\DoxyCodeLine{41     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGrahamScan_a30c54195c5a095a9ce969a1c58edd7be}\label{classGrahamScan_a30c54195c5a095a9ce969a1c58edd7be}} 
+\index{GrahamScan@{GrahamScan}!runGrahamScan@{runGrahamScan}}
+\index{runGrahamScan@{runGrahamScan}!GrahamScan@{GrahamScan}}
+\doxysubsubsection{\texorpdfstring{runGrahamScan()}{runGrahamScan()}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classPoint}{Point}}$>$ Graham\+Scan\+::run\+Graham\+Scan (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classPoint}{Point}} $>$ \&}]{Points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Graham Scan algorithm main function to find convex hull from the given set of Points Returns the Hull Points from a vector of Points 
+
+Definition at line 59 of file Graham\+Scan.\+h.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{60     \{}
+\DoxyCodeLine{61         \textcolor{keywordflow}{if}(Points.size()<=1)}
+\DoxyCodeLine{62             \textcolor{keywordflow}{return} Points;}
+\DoxyCodeLine{63         qsort(\&Points[0], Points.size(), \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classPoint}{Point}}), \mbox{\hyperlink{classGrahamScan_a8b5454a7181029386a9b6fd71ce95f16}{compare}});}
+\DoxyCodeLine{64         vector<Point> lower\_hull;}
+\DoxyCodeLine{65         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i=0; i<Points.size(); ++i)}
+\DoxyCodeLine{66             lower\_hull = \mbox{\hyperlink{classGrahamScan_a6fae7713bd34903d6f9544a3beb11189}{left}}(lower\_hull,Points[i]);}
+\DoxyCodeLine{67         reverse(Points.begin(),Points.end());}
+\DoxyCodeLine{68         vector<Point> upper\_hull;}
+\DoxyCodeLine{69         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i=0; i<Points.size(); ++i)}
+\DoxyCodeLine{70             upper\_hull = \mbox{\hyperlink{classGrahamScan_a6fae7713bd34903d6f9544a3beb11189}{left}}(upper\_hull,Points[i]);}
+\DoxyCodeLine{71         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i=1;i<upper\_hull.size();++i)}
+\DoxyCodeLine{72             lower\_hull.push\_back(upper\_hull[i]);}
+\DoxyCodeLine{73         \textcolor{keywordflow}{return} lower\_hull;}
+\DoxyCodeLine{74     \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Graham\+Scan.\+h\end{DoxyCompactItemize}

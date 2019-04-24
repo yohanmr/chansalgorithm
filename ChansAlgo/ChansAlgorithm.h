@@ -8,9 +8,7 @@
 using namespace std;
 
 GrahamScan GS;
-/**
-  * Main class to find the convex hull of chunks using Chans Algorithm
-  */
+/// Main class to find the convex hull of chunks using Chans Algorithm
 class ChansAlgo
 {
 private:

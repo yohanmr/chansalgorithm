@@ -149,9 +149,9 @@ public:
 						cout<<hulls[i][j]<<" ";
 
 					}
-					w->drawLines(hulls[i]);
-                    if(hulls[i].size() != 1)
-					sleep(1);
+//					w->drawLines(hulls[i]);
+//                    if(hulls[i].size() != 1)
+//					sleep(1);
 					cout<<"\n";
 				}
 				vector<pair<int,int> > hull;

@@ -54,7 +54,7 @@ void MainWindow::plot()
 
 }
 
-void MainWindow::drawLines(vector<point> points)
+void MainWindow::drawLines(vector<Point> points)
 {
 //    ui->plot->clearItems();
     QCPItemLine *line[points.size()];
@@ -91,9 +91,9 @@ void MainWindow::clickedGraph(QMouseEvent *event)
 
 void MainWindow::on_btn_ChansAlgo_clicked()
 {
-    std::vector<point> points;
+    std::vector<Point> points;
     for(int i = 0; i < qv_x.size(); i++){
-        struct point p;
+            Point p;
             p.x = qv_x[i];
             p.y = qv_y[i];
             points.push_back(p);

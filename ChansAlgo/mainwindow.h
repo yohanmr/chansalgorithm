@@ -3,11 +3,7 @@
 
 #include <QMainWindow>
 #include <vector>
-
-struct point{
-    double x;
-    double y;
-};
+#include "point.h"
 
 namespace Ui {
 class MainWindow;

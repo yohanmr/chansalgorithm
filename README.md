@@ -1,5 +1,5 @@
 # Computing convex hull using Chan's Algorithm
-Computational Geometry Project
+Computational Geometry Project. <br>
 This is a dynamic demo of Chan's Algorithm, an optimal, output-sensitive algorithm for computing the convex hull of a point set in O(nlogh) time.<br>
 Where n is the number of input points and h is the number of output hull points <br>
 

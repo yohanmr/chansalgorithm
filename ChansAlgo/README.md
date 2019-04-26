@@ -44,6 +44,9 @@ We randomly generated points and ran the algorithm on the points to find the con
 | 10,000 | 13.400 |
 | 20,000 | 61.170 |
 
+![Graham Scan Time Complexity](graham.jpeg "Graham Scan Time Complexity")
+
+![Chan's algo Time Complexity](chan.jpeg "Chan's algo Time Complexity")
 
 <br>
 ## Input
